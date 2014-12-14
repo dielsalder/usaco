@@ -1,36 +1,36 @@
 /*
 ID: elissa.1
 LANG: C
+PROG: ride
 */
 #include <stdio.h>
+#include <stdlib.h>
 
-main() {
-    FILE *fin = fopen ("names.txt", "r");
-    size_t len = 0;
-    ssize_t read;
-
-    char* comet = getline(&line, &len, fin);
-    char* group = getline(&line, &len, fin);
-
-    int cnum = convert(comet);
-    int gnum = convert(group);
-
-    if (cnum % 47 == gnum % 47) {
-        printf("GO\n");
-    }
-    else {
-        printf("STAY\n");
-    }
-    exit(0);
-}
-
-int convert(char name)
+int num(char * name)
 {
-    prod = 1;
-    for (i; i < 4; i++) {
-        num = name[i] - 'a' + 1;
-        prod *= num;
+    int prod = 1;
+    int i = 0;
+    while (i < 10) {
+        int num = name[i] - 'a' + 1;
+        prod = prod * num;
+        i++;
     }
-
-    return prod
+    return prod % 47;
 }
+
+int main() {
+    FILE *fin = fopen ("ride.in", "r");
+    FILE *fout = fopen ("ride.out", "r");
+
+    char comet[10], group [10];
+    fgets(fin, 10, comet);
+    fgets(fin, 10, group);
+
+    if (num(comet) == num(group))
+        fprintf(fout, "GO\n");
+    else
+        fprintf(fout, "STAY\n");
+
+    return(0);
+}
+
